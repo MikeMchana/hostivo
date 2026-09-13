@@ -53,6 +53,7 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5173",
         "http://localhost:5174",
+        "https://hostivo.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -76,7 +77,6 @@ app.include_router(kitchen_router)
 app.include_router(reports_router)
 app.include_router(settings_router)
 app.include_router(auth_router)
-
 
 
 @app.get("/")

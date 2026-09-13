@@ -7,6 +7,7 @@ import {
   Users,
   CheckCircle,
 } from "lucide-react";
+import { apiRequest } from "../services/api";
 
 function Booking() {
   const location = useLocation();
@@ -120,8 +121,8 @@ function Booking() {
     setLoading(true);
 
     try {
-      const response = await fetch(
-        "http://127.0.0.1:8000/reservations/public",
+      const data = await apiRequest(
+        "/reservations/public",
         {
           method: "POST",
           headers: {
@@ -138,16 +139,9 @@ function Booking() {
             guests: Number(formData.guests),
             total_amount: total,
           }),
-        }
+        },
+        "Unable to complete your booking request."
       );
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(
-          data.detail || "Unable to complete your booking request."
-        );
-      }
 
       console.log("=================================");
       console.log("🏨 HOSTIVO BOOKING");

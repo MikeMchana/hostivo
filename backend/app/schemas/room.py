@@ -8,6 +8,7 @@ class RoomStatus(str, Enum):
     CLEANING = "cleaning"
     MAINTENANCE = "maintenance"
     INACTIVE = "inactive"
+    OCCUPIED = "occupied"
 
 
 class RoomBase(BaseModel):

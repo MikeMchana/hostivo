@@ -5,9 +5,9 @@ import {
   useState,
 } from "react";
 
-const AuthContext = createContext(null);
+import { apiRequest } from "../services/api";
 
-const API_URL = "http://127.0.0.1:8000";
+const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
   const [token, setToken] = useState(
@@ -42,22 +42,15 @@ export function AuthProvider({ children }) {
 
     async function validateToken() {
       try {
-        const response = await fetch(
-          `${API_URL}/auth/me`,
+        const currentUser = await apiRequest(
+          "/auth/me",
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
+          "Failed to validate authentication"
         );
-
-        if (!response.ok) {
-          setToken(null);
-          setUser(null);
-          return;
-        }
-
-        const currentUser = await response.json();
 
         setUser({
           user_id: currentUser.user_id,

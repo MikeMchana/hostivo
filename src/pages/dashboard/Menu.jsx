@@ -62,6 +62,7 @@ function Menu() {
     name: "",
     category: "",
     description: "",
+    image_url: "",
     price: "",
     is_available: true,
   });
@@ -70,6 +71,7 @@ function Menu() {
     name: "",
     category: "",
     description: "",
+    image_url: "",
     price: "",
   });
 
@@ -86,6 +88,7 @@ function Menu() {
         name: item.name,
         category: item.category,
         description: item.description || "",
+        image_url: item.image_url || "",
         price: Number(item.price),
         is_available: item.is_available,
         status: item.is_available
@@ -160,6 +163,7 @@ function Menu() {
       name: "",
       category: "",
       description: "",
+      image_url: "",
       price: "",
       is_available: true,
     });
@@ -194,6 +198,8 @@ function Menu() {
     const category = formData.category.trim();
     const description =
       formData.description.trim();
+    const image_url =
+      formData.image_url.trim();
     const price = Number(formData.price);
 
     if (!name || !category) {
@@ -217,6 +223,7 @@ function Menu() {
         name,
         category,
         description: description || null,
+        image_url: image_url || null,
         price,
         is_available: formData.is_available,
       });
@@ -227,6 +234,7 @@ function Menu() {
         name: "",
         category: "",
         description: "",
+        image_url: "",
         price: "",
         is_available: true,
       });
@@ -249,6 +257,7 @@ function Menu() {
       name: item.name,
       category: item.category,
       description: item.description,
+      image_url: item.image_url,
       price: item.price,
     });
 
@@ -286,6 +295,8 @@ function Menu() {
       editFormData.category.trim();
     const description =
       editFormData.description.trim();
+    const image_url =
+      editFormData.image_url.trim();
     const price = Number(editFormData.price);
 
     if (!name || !category) {
@@ -311,6 +322,7 @@ function Menu() {
           name,
           category,
           description: description || null,
+          image_url: image_url || null,
           price,
         }
       );
@@ -628,9 +640,17 @@ function Menu() {
                     {/* Item */}
                     <td className="px-6 py-5">
                       <div className="flex items-center gap-3">
-                        <div className="w-11 h-11 rounded-xl bg-[#102A43]/5 text-[#102A43] flex items-center justify-center">
-                          <UtensilsCrossed size={19} />
-                        </div>
+                        {item.image_url ? (
+                          <img
+                            src={item.image_url}
+                            alt={item.name}
+                            className="w-11 h-11 rounded-xl object-cover"
+                          />
+                        ) : (
+                          <div className="w-11 h-11 rounded-xl bg-[#102A43]/5 text-[#102A43] flex items-center justify-center">
+                            <UtensilsCrossed size={19} />
+                          </div>
+                        )}
 
                         <div>
                           <p className="font-semibold text-[#102A43]">
@@ -858,6 +878,25 @@ function Menu() {
 
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">
+                  Image URL
+                </label>
+
+                <input
+                  name="image_url"
+                  type="url"
+                  value={formData.image_url}
+                  onChange={handleFormChange}
+                  placeholder="https://example.com/menu-image.jpg"
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 outline-none focus:border-[#C89B3C] focus:ring-2 focus:ring-[#C89B3C]/10"
+                />
+
+                <p className="text-xs text-slate-400 mt-2">
+                  Use a direct image URL for the menu item.
+                </p>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-2">
                   Description
                 </label>
 
@@ -997,6 +1036,25 @@ function Menu() {
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 outline-none focus:border-[#C89B3C] focus:ring-2 focus:ring-[#C89B3C]/10"
                   />
                 </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-2">
+                  Image URL
+                </label>
+
+                <input
+                  name="image_url"
+                  type="url"
+                  value={editFormData.image_url}
+                  onChange={handleEditFormChange}
+                  placeholder="https://example.com/menu-image.jpg"
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 outline-none focus:border-[#C89B3C] focus:ring-2 focus:ring-[#C89B3C]/10"
+                />
+
+                <p className="text-xs text-slate-400 mt-2">
+                  Use a direct image URL for the menu item.
+                </p>
               </div>
 
               <div>

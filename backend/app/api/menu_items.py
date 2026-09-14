@@ -25,6 +25,7 @@ def create_menu_item(
         name=menu_item_data.name,
         category=menu_item_data.category,
         description=menu_item_data.description,
+        image_url=menu_item_data.image_url,
         price=menu_item_data.price,
         is_available=menu_item_data.is_available,
     )
@@ -89,6 +90,7 @@ def update_menu_item(
     menu_item.name = menu_item_data.name
     menu_item.category = menu_item_data.category
     menu_item.description = menu_item_data.description
+    menu_item.image_url = menu_item_data.image_url
     menu_item.price = menu_item_data.price
 
     db.commit()

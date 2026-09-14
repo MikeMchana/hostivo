@@ -228,6 +228,11 @@ class MenuItem(Base):
         nullable=True,
     )
 
+    image_url: Mapped[str | None] = mapped_column(
+        String(500),
+        nullable=True,
+    )
+
     price: Mapped[float] = mapped_column(
         Numeric(10, 2),
         nullable=False,

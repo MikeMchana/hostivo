@@ -17,26 +17,8 @@ const categories = [
   "Desserts",
 ];
 
-const menuImages = {
-  "English Breakfast":
-    "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=900&q=80",
-  "Grilled Chicken":
-    "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=900&q=80",
-  "Beef Steak":
-    "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=80",
-  "Fresh Tropical Juice":
-    "https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=900&q=80",
-  "Chocolate Cake":
-    "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=80",
-  "Fresh Fruit Platter":
-    "https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=900&q=80",
-  "Chicken Burger":
-    "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80",
-  Cappuccino:
-    "https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=900&q=80",
-  Cheesecake:
-    "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=900&q=80",
-};
+const fallbackImage =
+  "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80";
 
 function Menu() {
   const navigate = useNavigate();
@@ -69,9 +51,7 @@ function Menu() {
             category: item.category,
             description: item.description || "",
             price: Number(item.price),
-            image:
-              menuImages[item.name] ||
-              "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80",
+            image: item.image_url || fallbackImage,
           }));
 
         setMenuItems(formattedItems);
